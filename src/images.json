@@ -1,0 +1,63 @@
+[
+    {
+        "id": 1,
+        "name": "Birdperson",
+        "image": "../clickyImages/Birdperson.png",
+        "clicked": false
+    },{
+        "id": 2,
+        "name": "Darunia",
+        "image": "../clickyImages/Darunia.png",
+        "clicked": false
+    },{
+        "id": 3,
+        "name": "Ganondorf",
+        "image": "../clickyImages/ganondorf.png",
+        "clicked": false
+    },{
+        "id": 4,
+        "name": "Impa",
+        "image": "../clickyImages/impa.png",
+        "clicked": false
+    },{
+        "id": 5,
+        "name": "Link",
+        "image": "../clickyImages/link.png",
+        "clicked": false
+    },{
+        "id": 6,
+        "name": "Malon",
+        "image": "../clickyImages/malon.png",
+        "clicked": false
+    },{
+        "id": 7,
+        "name": "Nabooru",
+        "image": "../clickyImages/nabooru.png",
+        "clicked": false
+    },{
+        "id": 8,
+        "name": "Ricky",
+        "image": "../clickyImages/Rick_D99.png",
+        "clicked": false
+    },{
+        "id": 9,
+        "name": "Ruto",
+        "image": "../clickyImages/ruto.png",
+        "clicked": false
+    },{
+        "id": 10,
+        "name": "Saria",
+        "image": "../clickyImages/Saria_real.png",
+        "clicked": false
+    },{
+        "id": 11,
+        "name": "Sheik",
+        "image": "../clickyImages/sheik.png",
+        "clicked": false
+    },{
+        "id": 12,
+        "name": "Zelda",
+        "image": "../clickyImages/zelda.png",
+        "clicked": false
+    }
+]
