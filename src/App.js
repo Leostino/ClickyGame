@@ -1,14 +1,12 @@
 import React from "react";
 
-import Container from "./components/Container"
+import Container from "./components/Container";
 
-import Header from "./components/Header"
+import Topdiv from "./components/Topdiv";
 
-import Nav from "./components/Nav"
+import ImageCard from "./components/ImageCard";
 
-import ImageCard from "./components/ImageCard"
-
-import images from "./images.json"
+import images from "./images.json";
 
 
 
@@ -19,9 +17,9 @@ class App extends React.Component {
     images: images,
     score: 0,
     topScore: 0,
-    maxScore: 12,
+    maxScore: 8,
     isCorrect: true,
-    
+    message:""
   }
 
 
@@ -29,25 +27,32 @@ class App extends React.Component {
 
   clickImage = id => {
 
-    const images = this.state.images;
+    console.log(id)
 
-    const imageClicked = images.filter(image => images.id === id);
+    const character = this.state.images;
 
-    if(!imageClicked.clicked) {
+    const clickedImage = character.filter(image => image.id === id);
 
-      imageClicked.clicked = true;
+    if (!clickedImage[0].clicked) {
 
-      this.shuffleImages();
+      clickedImage[0].clicked = true;
+
+      console.log(clickedImage)
 
       this.correctClick();
 
-      this.setState({images});
+      this.shuffleImages(images);
 
-    } else {
+      this.setState({images})
 
-      this.incorrectClick();
+    }else{
+
+      this.incorrectClick()
 
     }
+
+    
+
 
   }
 
@@ -64,8 +69,8 @@ class App extends React.Component {
 
 
   correctClick = () => {
-
-    this.setState({isCorrect: true});
+    
+    this.setState({isCorrect: true})
 
     if (this.state.score + 1 > this.state.topScore) {
 
@@ -74,33 +79,28 @@ class App extends React.Component {
     }
 
     if (this.state.score + 1 >= this.state.maxScore) {
+      
+      this.setState({
+        score: this.state.score + 1,
+
+        message: "CONGRATS! YOU WIN!",
+
+        topScore: 0
+
+      });
+
+      this.reset()
+
+    } else {
 
       this.setState({
 
         score: this.state.score + 1,
 
-        // message: "CONGRATS! YOU WIN!",
-
-        // messageClass: "correct"
-
+        message: "YOU CLICKED CORRECTLY!"
       });
-
-    }else{
-
-      this.setState({
-
-        score: this.state.score + 1,
-
-       // message: "YOU GUESSED CORRECTLY!",
-
-       // messageClass: "correct"
-
-      });
-
     }
-
   }
-
 
 
   incorrectClick = () => {
@@ -109,16 +109,18 @@ class App extends React.Component {
 
       isCorrect: false,
 
-      // message: "INCORRECT. PLAY AGAIN?"
-
+      message: "WRONG! WRONG!! WRONG!!!"
+    
     })
+
+    //alert("you clicked wrong")
 
     this.reset();
 
   }
 
 
-  reset = id => {
+  reset = () => {
 
     const images = this.state.images;
 
@@ -128,7 +130,7 @@ class App extends React.Component {
 
     }
 
-    this.setState({score: 0})
+    this.setState({ score: 0 });
 
   }
 
@@ -138,12 +140,22 @@ class App extends React.Component {
 
     return (
       <Container>
-        <Header>CLICKY GAME</Header>
-        <Nav>
-          Score: {this.state.score}
-        </Nav>
-        <ImageCard></ImageCard>
-      </Container>
+        <Topdiv 
+          message={this.state.message}
+          topScore={this.state.topScore}
+          score={this.state.score}
+        />
+      {this.state.images.map(image => (
+          <ImageCard
+          clickImage={this.clickImage}          
+            key={image.id}
+            id={image.id}
+            name={image.name}      
+            image={image.image}
+              
+          />
+        ))}
+       </Container>
     )
   }
 
