@@ -57,9 +57,9 @@ class App extends React.Component {
   }
 
 
-  shuffleImages = toShuffle => {
+  shuffleImages = images => {
 
-    toShuffle.sort((a, b) => {
+    images.sort((a, b) => {
 
       return 0.5 - Math.random();
 
@@ -81,9 +81,10 @@ class App extends React.Component {
     if (this.state.score + 1 >= this.state.maxScore) {
       
       this.setState({
+
         score: this.state.score + 1,
 
-        message: "CONGRATS! YOU WIN!",
+        message: "CONGRATS! YOU WIN!!!",
 
         topScore: 0
 
@@ -112,8 +113,6 @@ class App extends React.Component {
       message: "WRONG! WRONG!! WRONG!!!"
     
     })
-
-    //alert("you clicked wrong")
 
     this.reset();
 
@@ -145,20 +144,23 @@ class App extends React.Component {
           topScore={this.state.topScore}
           score={this.state.score}
         />
-      {this.state.images.map(image => (
+        {this.state.images.map(image => (
+        
           <ImageCard
-          clickImage={this.clickImage}          
+            clickImage={this.clickImage}          
             key={image.id}
             id={image.id}
             name={image.name}      
-            image={image.image}
-              
+            image={image.image}              
           />
         ))}
-       </Container>
+       
+      </Container>
     )
   }
 
 }
+
+
 
 export default App;
