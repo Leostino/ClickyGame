@@ -9,8 +9,11 @@ import ImageCard from "./components/ImageCard";
 import images from "./images.json";
 
 
+// the App class
 
 class App extends React.Component {
+
+  // variables in state obj
   
   state = {
 
@@ -23,7 +26,7 @@ class App extends React.Component {
   }
 
 
-
+// click method with id parameter
 
   clickImage = id => {
 
@@ -31,31 +34,45 @@ class App extends React.Component {
 
     const character = this.state.images;
 
+    // store clicked image in an array clickedImage
+
     const clickedImage = character.filter(image => image.id === id);
 
+    // if statement to check if clicked field is true or false
+
     if (!clickedImage[0].clicked) {
+
+      // switch clicked to true
 
       clickedImage[0].clicked = true;
 
       console.log(clickedImage)
 
+      // call correct click method to update state
+
       this.correctClick();
 
+      // shuffle the images
+
       this.shuffleImages(images);
+
+      // update state
 
       this.setState({images})
 
     }else{
 
+      // incorrect click method if clicked field is already true
+
       this.incorrectClick()
 
-    }
-
-    
+    }  
 
 
   }
 
+
+  // this method shuffles images if user clicked right
 
   shuffleImages = images => {
 
@@ -68,15 +85,25 @@ class App extends React.Component {
   }
 
 
+  // when user clicks right this method is called
+
   correctClick = () => {
+
+    // update isCorrect
     
     this.setState({isCorrect: true})
+
+    
+
+    // updating top score
 
     if (this.state.score + 1 > this.state.topScore) {
 
       this.setState({ topScore: this.state.topScore + 1 });
 
     }
+
+    // update score and check if the game is won or lost
 
     if (this.state.score + 1 >= this.state.maxScore) {
       
@@ -104,6 +131,8 @@ class App extends React.Component {
   }
 
 
+  // when the user guesses wrong, this method is called
+
   incorrectClick = () => {
 
     this.setState({
@@ -118,6 +147,8 @@ class App extends React.Component {
 
   }
 
+
+  // method that resets the game
 
   reset = () => {
 
@@ -134,6 +165,8 @@ class App extends React.Component {
   }
 
 
+
+  // method that renders the components on the page
 
   render () {
 
